@@ -214,9 +214,11 @@ body:hover #cursor-spotlight {
   align-items: center;
   gap: 2px;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   padding: 2px;
   border-radius: var(--radius-pill);
+  position: relative;
+  z-index: 1005;
 }
 
 .lang-btn {
@@ -226,11 +228,12 @@ body:hover #cursor-spotlight {
   justify-content: center;
   color: var(--text-secondary);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  cursor: pointer;
-  padding: 3px 8px;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  padding: 4px 9px;
   border-radius: var(--radius-pill);
   transition: var(--transition-fast);
   line-height: 1;
@@ -239,11 +242,13 @@ body:hover #cursor-spotlight {
 
 .lang-btn:hover {
   color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .lang-btn.active {
   color: #000000 !important;
   background: #ffffff !important;
+  font-weight: 800;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
