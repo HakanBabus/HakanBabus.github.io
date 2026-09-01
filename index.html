@@ -41,6 +41,13 @@
       </div>
 
       <div class="nav-actions">
+        <!-- Minimal Language Switcher Pill -->
+        <div class="lang-switch-pill" id="lang-toggle" title="Dil / Language">
+          <button class="lang-btn" data-lang="tr">TR</button>
+          <span class="lang-divider">/</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
         <a href="https://github.com/HakanBabus" target="_blank" rel="noopener noreferrer" class="btn-pill-github" title="GitHub">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           <span>GitHub</span>
@@ -85,7 +92,7 @@
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <span class="stat-val">⭐ 15+</span>
+          <span class="stat-val" id="stat-stars">⭐ 15+</span>
           <span class="stat-label" data-i18n="stat_stars">Proje Yıldızı</span>
         </div>
         <div class="stat-divider"></div>
@@ -96,56 +103,90 @@
       </div>
     </section>
 
-    <!-- Clean, Sleek About Bento -->
+    <!-- Redesigned Apple Editorial About Section -->
     <section id="about" class="section">
       <div class="section-header">
         <span class="section-tag" data-i18n="about_tag">Hakkımda & Vizyon</span>
-        <h2 class="section-title" data-i18n="about_title">Mühendislik & İnşa Tutkusu</h2>
+        <h2 class="section-title" data-i18n="about_title">Mühendislik Yaklaşımım</h2>
       </div>
 
-      <div class="about-bento-grid">
-        <div class="about-card primary-card">
-          <div class="card-num">01</div>
-          <h3 data-i18n="about_c1_title">Multi-Agent & Otonom AI İş Akışları</h3>
-          <p data-i18n="about_c1_desc">
-            LLM'leri basit birer sohbet botu olarak değil; katı planlama, alt ajan delegasyonu ve doğrulama mekanizmalarıyla 
-            yüksek kaliteli kod üreten otonom sistemler (AgentMaxxing, LunaMaxxing) olarak tasarlıyorum.
+      <div class="about-editorial-grid">
+        <!-- Left Column: Story & Narrative -->
+        <div class="about-story-card">
+          <div class="story-badge">
+            <span class="story-dot"></span>
+            <span data-i18n="about_story_badge">Geliştirici & Sistem Tasarımcısı</span>
+          </div>
+          
+          <h3 class="story-heading" data-i18n="about_story_heading">
+            Fikirleri kaba deneylerden alıp <span class="text-highlight">kararlı ve akıcı araçlara</span> dönüştürüyorum.
+          </h3>
+          
+          <p class="story-body" data-i18n="about_story_body">
+            Bülent Ecevit Üniversitesi Bilgisayar Mühendisliği öğrencisiyim. Yazılım geliştirirken odağım; kullanıcıyı yormayan yerel araçlar, 
+            otonom alt ajanlarla çalışan yapay zekâ iş akışları ve yüksek performanslı sunucu altyapıları inşa etmek.
           </p>
-          <div class="mini-tags">
-            <span>AgentMaxxing</span>
-            <span>LunaMaxxing</span>
-            <span>Codex</span>
-            <span>Python</span>
+
+          <div class="story-highlights">
+            <div class="highlight-item">
+              <span class="hl-icon">⚡</span>
+              <div>
+                <strong data-i18n="hl_1_t">Local-First Mimarisi</strong>
+                <p data-i18n="hl_1_d">Kullanıcı verisinin yerelde kaldığı, ultra hızlı masaüstü araçları.</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <span class="hl-icon">🤖</span>
+              <div>
+                <strong data-i18n="hl_2_t">Otonom Ajan Orkestrasyonu</strong>
+                <p data-i18n="hl_2_d">Sınırlandırılmış alt ajanlar ve katı doğrulama adımlarıyla güvenilir kod üretimi.</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="about-card">
-          <div class="card-num">02</div>
-          <h3 data-i18n="about_c2_title">Masaüstü & Yerel Kurgu Araçları</h3>
-          <p data-i18n="about_c2_desc">
-            Kullanıcı verisinin cihazda kaldığı, internet bağımlılığı olmayan yüksek hızlı masaüstü yazılımları inşa ediyorum. 
-            CutLoc ile React, Fastify ve FFmpeg gücünü hafif bir masaüstü kurgu deneyimine dönüştürdüm.
-          </p>
-          <div class="mini-tags">
-            <span>CutLoc</span>
-            <span>React</span>
-            <span>TypeScript</span>
-            <span>FFmpeg</span>
+        <!-- Right Column: 3 Interactive Focus Pods -->
+        <div class="about-pods-column">
+          <!-- Pod 1 -->
+          <div class="focus-pod pod-ai">
+            <div class="pod-header">
+              <div class="pod-icon-wrapper ai">🤖</div>
+              <div class="pod-meta">
+                <h4 data-i18n="pod_ai_t">Multi-Agent & AI Orkestrasyonu</h4>
+                <span class="pod-sub">AgentMaxxing · LunaMaxxing · Codex</span>
+              </div>
+            </div>
+            <p data-i18n="pod_ai_d">
+              LLM'leri basit birer metin üreticisi olarak değil; planlama, alt ajan yönetimi ve test odaklı doğrulama süreçlerine sahip sistemler olarak kullanıyorum.
+            </p>
           </div>
-        </div>
 
-        <div class="about-card wide-card">
-          <div class="card-num">03</div>
-          <h3 data-i18n="about_c3_title">Sistem Mühendisliği & Minecraft Ekosistemi</h3>
-          <p data-i18n="about_c3_desc">
-            Bülent Ecevit Üniversitesi'nde aldığım mühendislik temellerini uzun yıllardır PocketMine-MP sunucu altyapısı, 
-            Bedrock protokolleri, sohbet güvenlik filtreleri (BadWord) ve sunucu otomasyonları (EasyAnnouncement) ile pratik üretime döküyorum.
-          </p>
-          <div class="mini-tags">
-            <span>PocketMine-MP API 4/5</span>
-            <span>PHP Systems</span>
-            <span>Bedrock Protocol</span>
-            <span>Security & API</span>
+          <!-- Pod 2 -->
+          <div class="focus-pod pod-desktop">
+            <div class="pod-header">
+              <div class="pod-icon-wrapper desktop">🎬</div>
+              <div class="pod-meta">
+                <h4 data-i18n="pod_desktop_t">Masaüstü & Kurgu Yazılımları</h4>
+                <span class="pod-sub">CutLoc · React · Fastify · FFmpeg</span>
+              </div>
+            </div>
+            <p data-i18n="pod_desktop_d">
+              Hızlı ve hafif masaüstü video düzenleyicileri inşa ederek, video işleme yükünü yerel donanımda akıcı hale getiriyorum.
+            </p>
+          </div>
+
+          <!-- Pod 3 -->
+          <div class="focus-pod pod-server">
+            <div class="pod-header">
+              <div class="pod-icon-wrapper server">🎮</div>
+              <div class="pod-meta">
+                <h4 data-i18n="pod_server_t">Sistem & Minecraft Sunucu Altyapısı</h4>
+                <span class="pod-sub">BadWord · EasyAnnouncement · PocketMine</span>
+              </div>
+            </div>
+            <p data-i18n="pod_server_d">
+              PocketMine-MP sunucu çekirdeği ve Bedrock protokolleri üzerinde yüksek performanslı PHP güvenlik ve otomasyon eklentileri geliştirdim.
+            </p>
           </div>
         </div>
       </div>
@@ -170,7 +211,7 @@
 
       <div class="projects-compact-grid" id="featured-projects">
         <!-- Card 1: AgentMaxxing -->
-        <div class="compact-card" data-category="ai">
+        <div class="compact-card" data-category="ai" data-repo="AgentMaxxing">
           <div class="compact-top">
             <span class="compact-badge ai">AI / Multi-Agent</span>
             <span class="compact-star">⭐ 3</span>
@@ -189,7 +230,7 @@
         </div>
 
         <!-- Card 2: CutLoc -->
-        <div class="compact-card" data-category="desktop">
+        <div class="compact-card" data-category="desktop" data-repo="CutLoc">
           <div class="compact-top">
             <span class="compact-badge desktop">Desktop App</span>
             <span class="compact-star">⭐ 1</span>
@@ -208,7 +249,7 @@
         </div>
 
         <!-- Card 3: LunaMaxxing -->
-        <div class="compact-card" data-category="ai">
+        <div class="compact-card" data-category="ai" data-repo="LunaMaxxing">
           <div class="compact-top">
             <span class="compact-badge ai">AI / Codex</span>
             <span class="compact-star">⭐ 1</span>
@@ -227,7 +268,7 @@
         </div>
 
         <!-- Card 4: GeminiMaxxing -->
-        <div class="compact-card" data-category="ai">
+        <div class="compact-card" data-category="ai" data-repo="GeminiMaxxing">
           <div class="compact-top">
             <span class="compact-badge ai">Agentic Skill</span>
             <span class="compact-star">Python</span>
@@ -246,7 +287,7 @@
         </div>
 
         <!-- Card 5: BadWord -->
-        <div class="compact-card" data-category="server">
+        <div class="compact-card" data-category="server" data-repo="BadWord">
           <div class="compact-top">
             <span class="compact-badge server">Minecraft Security</span>
             <span class="compact-star">⭐ 3</span>
@@ -265,7 +306,7 @@
         </div>
 
         <!-- Card 6: EasyAnnouncement -->
-        <div class="compact-card" data-category="server">
+        <div class="compact-card" data-category="server" data-repo="EasyAnnouncement">
           <div class="compact-top">
             <span class="compact-badge server">Minecraft Automation</span>
             <span class="compact-star">⭐ 1</span>
@@ -284,7 +325,7 @@
         </div>
 
         <!-- Card 7: FarmGuarder -->
-        <div class="compact-card" data-category="server">
+        <div class="compact-card" data-category="server" data-repo="FarmGuarder">
           <div class="compact-top">
             <span class="compact-badge server">Minecraft Plugin</span>
             <span class="compact-star">⭐ 2</span>
@@ -303,7 +344,7 @@
         </div>
 
         <!-- Card 8: HologramAPI -->
-        <div class="compact-card" data-category="server">
+        <div class="compact-card" data-category="server" data-repo="HologramAPI">
           <div class="compact-top">
             <span class="compact-badge server">Minecraft Virion</span>
             <span class="compact-star">⭐ 2</span>

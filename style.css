@@ -194,8 +194,46 @@ body:hover #cursor-spotlight {
 .nav-actions {
   display: flex;
   align-items: center;
+  gap: 10px;
   border-left: 1px solid var(--border-subtle);
   padding-left: 12px;
+}
+
+.lang-switch-pill {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  padding: 3px 6px;
+  border-radius: var(--radius-pill);
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 2px 5px;
+  border-radius: 4px;
+  transition: var(--transition-fast);
+}
+
+.lang-btn:hover {
+  color: var(--text-primary);
+}
+
+.lang-btn.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.lang-divider {
+  font-size: 0.65rem;
+  color: var(--text-muted);
 }
 
 .btn-pill-github {
@@ -414,70 +452,195 @@ body:hover #cursor-spotlight {
 }
 
 /* ==========================================================================
-   About Bento Grid
+   About Section (Apple Editorial & Interactive Focus Pods)
    ========================================================================== */
-.about-bento-grid {
+.about-editorial-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 20px;
+  align-items: stretch;
 }
 
-.about-card {
-  background: var(--bg-card);
+.about-story-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 28px;
-  position: relative;
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: var(--transition-smooth);
 }
 
-.about-card:hover {
-  background: var(--bg-card-hover);
+.about-story-card:hover {
   border-color: var(--border-highlight);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.045);
 }
 
-.about-card.wide-card {
-  grid-column: 1 / -1;
-}
-
-.card-num {
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
+.story-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.74rem;
   font-weight: 700;
-  color: var(--accent-blue);
-  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  margin-bottom: 16px;
 }
 
-.about-card h3 {
-  font-size: 1.25rem;
+.story-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.story-heading {
+  font-size: 1.45rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 10px;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  margin-bottom: 16px;
   color: #ffffff;
 }
 
-.about-card p {
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
+.text-highlight {
+  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.mini-tags {
+.story-body {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.story-highlights {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 18px;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 20px;
 }
 
-.mini-tags span {
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.hl-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.highlight-item strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.highlight-item p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* Right Column: Focus Pods */
+.about-pods-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.focus-pod {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.focus-pod:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-highlight);
+  transform: translateX(4px);
+}
+
+.focus-pod.pod-ai:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 10px 25px -10px rgba(168, 85, 247, 0.2);
+}
+
+.focus-pod.pod-desktop:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 10px 25px -10px rgba(59, 130, 246, 0.2);
+}
+
+.focus-pod.pod-server:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 10px 25px -10px rgba(245, 158, 11, 0.2);
+}
+
+.pod-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.pod-icon-wrapper {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+.pod-icon-wrapper.ai {
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+.pod-icon-wrapper.desktop {
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.pod-icon-wrapper.server {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.pod-meta h4 {
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.pod-sub {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 3px 9px;
-  border-radius: var(--radius-pill);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.focus-pod p {
+  font-size: 0.84rem;
   color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 /* ==========================================================================
@@ -920,7 +1083,7 @@ body:hover #cursor-spotlight {
     display: none;
   }
 
-  .about-bento-grid {
+  .about-editorial-grid {
     grid-template-columns: 1fr;
   }
 

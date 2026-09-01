@@ -20,13 +20,20 @@ const translations = {
     stat_edu: "Bilgisayar Mühendisliği",
 
     about_tag: "Hakkımda & Vizyon",
-    about_title: "Mühendislik & İnşa Tutkusu",
-    about_c1_title: "Multi-Agent & Otonom AI İş Akışları",
-    about_c1_desc: "LLM'leri basit birer sohbet botu olarak değil; katı planlama, alt ajan delegasyonu ve doğrulama mekanizmalarıyla yüksek kaliteli kod üreten otonom sistemler (AgentMaxxing, LunaMaxxing) olarak tasarlıyorum.",
-    about_c2_title: "Masaüstü & Yerel Kurgu Araçları",
-    about_c2_desc: "Kullanıcı verisinin cihazda kaldığı, internet bağımlılığı olmayan yüksek hızlı masaüstü yazılımları inşa ediyorum. CutLoc ile React, Fastify ve FFmpeg gücünü hafif bir masaüstü kurgu deneyimine dönüştürdüm.",
-    about_c3_title: "Sistem Mühendisliği & Minecraft Ekosistemi",
-    about_c3_desc: "Bülent Ecevit Üniversitesi'nde aldığım mühendislik temellerini uzun yıllardır PocketMine-MP sunucu altyapısı, Bedrock protokolleri, sohbet güvenlik filtreleri (BadWord) ve sunucu otomasyonları (EasyAnnouncement) ile pratik üretime döküyorum.",
+    about_title: "Mühendislik Yaklaşımım",
+    about_story_badge: "Geliştirici & Sistem Tasarımcısı",
+    about_story_heading: "Fikirleri kaba deneylerden alıp <span class=\"text-highlight\">kararlı ve akıcı araçlara</span> dönüştürüyorum.",
+    about_story_body: "Bülent Ecevit Üniversitesi Bilgisayar Mühendisliği öğrencisiyim. Yazılım geliştirirken odağım; kullanıcıyı yormayan yerel araçlar, otonom alt ajanlarla çalışan yapay zekâ iş akışları ve yüksek performanslı sunucu altyapıları inşa etmek.",
+    hl_1_t: "Local-First Mimarisi",
+    hl_1_d: "Kullanıcı verisinin yerelde kaldığı, ultra hızlı masaüstü araçları.",
+    hl_2_t: "Otonom Ajan Orkestrasyonu",
+    hl_2_d: "Sınırlandırılmış alt ajanlar ve katı doğrulama adımlarıyla güvenilir kod üretimi.",
+    pod_ai_t: "Multi-Agent & AI Orkestrasyonu",
+    pod_ai_d: "LLM'leri basit birer metin üreticisi olarak değil; planlama, alt ajan yönetimi ve test odaklı doğrulama süreçlerine sahip sistemler olarak kullanıyorum.",
+    pod_desktop_t: "Masaüstü & Kurgu Yazılımları",
+    pod_desktop_d: "Hızlı ve hafif masaüstü video düzenleyicileri inşa ederek, video işleme yükünü yerel donanımda akıcı hale getiriyorum.",
+    pod_server_t: "Sistem & Minecraft Sunucu Altyapısı",
+    pod_server_d: "PocketMine-MP sunucu çekirdeği ve Bedrock protokolleri üzerinde yüksek performanslı PHP güvenlik ve otomasyon eklentileri geliştirdim.",
 
     projects_tag: "Çalışmalarım",
     projects_title: "Projeler",
@@ -74,13 +81,20 @@ const translations = {
     stat_edu: "Computer Engineering",
 
     about_tag: "About & Vision",
-    about_title: "Engineering & Craftsmanship",
-    about_c1_title: "Multi-Agent & Autonomous AI Workflows",
-    about_c1_desc: "Transforming LLMs from basic chat interfaces into strictly planned, subagent-delegated, and verified engineering systems (AgentMaxxing, LunaMaxxing).",
-    about_c2_title: "Desktop & Local-First Video Tooling",
-    about_c2_desc: "Building high-performance desktop software where data stays local. CutLoc combines React, Fastify, and FFmpeg into a seamless desktop timeline trimming experience.",
-    about_c3_title: "Systems Engineering & Minecraft Ecosystem",
-    about_c3_desc: "Applying computer engineering principles to years of PocketMine-MP server infrastructure, Bedrock protocols, chat security filters (BadWord), and automation tools (EasyAnnouncement).",
+    about_title: "Engineering Approach",
+    about_story_badge: "Developer & Systems Designer",
+    about_story_heading: "Turning ideas from rough prototypes into <span class=\"text-highlight\">stable, fluid software</span>.",
+    about_story_body: "Computer Engineering student at Bülent Ecevit University. My focus centers on zero-friction local-first tools, bounded autonomous AI workflows, and high-throughput server infrastructures.",
+    hl_1_t: "Local-First Architecture",
+    hl_1_d: "High-speed desktop tools keeping all user data strictly on device.",
+    hl_2_t: "Autonomous Agent Workflows",
+    hl_2_d: "Reliable code synthesis via bounded subagents and test-driven verification.",
+    pod_ai_t: "Multi-Agent & AI Orchestration",
+    pod_ai_d: "Engineering LLMs into goal-driven systems featuring strict planning, subagent execution, and verification pipelines.",
+    pod_desktop_t: "Desktop & Media Tooling",
+    pod_desktop_d: "Building fast, lightweight desktop video editors that offload processing cleanly onto local hardware.",
+    pod_server_t: "Systems & Minecraft Infrastructure",
+    pod_server_d: "Developing high-performance PHP security, moderation, and automation plugins on PocketMine-MP and Bedrock protocols.",
 
     projects_tag: "Work",
     projects_title: "Projects",
@@ -112,16 +126,20 @@ const translations = {
   }
 };
 
-// Automatic Locale Detection (detect system/browser language)
-function detectUserLanguage() {
-  const browserLang = (navigator.language || navigator.userLanguage || 'tr').toLowerCase();
+// Automatic Locale Detection (Turkish for Turkish systems, English for all others by default)
+function getInitialLanguage() {
+  const saved = localStorage.getItem('pref_lang');
+  if (saved && (saved === 'tr' || saved === 'en')) {
+    return saved;
+  }
+  const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
   return browserLang.startsWith('tr') ? 'tr' : 'en';
 }
 
-const currentLang = detectUserLanguage();
+let currentLang = getInitialLanguage();
 
 document.addEventListener('DOMContentLoaded', () => {
-  applyAutoLanguage(currentLang);
+  initLanguageSwitcher();
   initProjectFilters();
   initClipboardActions();
   initSpotlight();
@@ -129,14 +147,35 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchGitHubMetrics();
 });
 
-function applyAutoLanguage(lang) {
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (translations[lang] && translations[lang][key]) {
-      el.innerHTML = translations[lang][key];
-    }
+function initLanguageSwitcher() {
+  const langBtns = document.querySelectorAll('.lang-btn');
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('pref_lang', lang);
+
+    langBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+
+    document.documentElement.setAttribute('lang', lang);
+  }
+
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selected = btn.getAttribute('data-lang');
+      setLanguage(selected);
+    });
   });
-  document.documentElement.setAttribute('lang', lang);
+
+  setLanguage(currentLang);
 }
 
 /* --------------------------------------------------------------------------
@@ -266,21 +305,49 @@ function initCardTilt() {
 }
 
 /* --------------------------------------------------------------------------
-   5. Live GitHub Stats Fetcher
+   5. Live GitHub Repos & Stars Fetcher
    -------------------------------------------------------------------------- */
 async function fetchGitHubMetrics() {
   const repoStat = document.getElementById('stat-repos');
-  if (!repoStat) return;
+  const starStat = document.getElementById('stat-stars');
 
   try {
-    const res = await fetch('https://api.github.com/users/HakanBabus');
+    const res = await fetch('https://api.github.com/users/HakanBabus/repos?per_page=100');
     if (res.ok) {
-      const data = await res.json();
-      if (data.public_repos) {
-        repoStat.innerText = `${data.public_repos}+`;
+      const repos = await res.json();
+      if (Array.isArray(repos) && repos.length > 0) {
+        // 1. Dinamik Toplam Repo Sayısı
+        if (repoStat) {
+          repoStat.innerText = `${repos.length}+`;
+        }
+
+        // 2. Dinamik Toplam Yıldız Sayısı ve Repo Eşleştirme
+        let totalStars = 0;
+        const starMap = {};
+
+        repos.forEach(repo => {
+          const stars = repo.stargazers_count || 0;
+          totalStars += stars;
+          starMap[repo.name.toLowerCase()] = stars;
+        });
+
+        if (starStat) {
+          starStat.innerText = `⭐ ${totalStars}+`;
+        }
+
+        // 3. Her Proje Kartının Kendi Yıldızını Otomatik Güncelleme
+        document.querySelectorAll('.compact-card[data-repo]').forEach(card => {
+          const repoKey = card.getAttribute('data-repo').toLowerCase();
+          if (Object.prototype.hasOwnProperty.call(starMap, repoKey)) {
+            const starBadge = card.querySelector('.compact-star');
+            if (starBadge) {
+              starBadge.innerText = `⭐ ${starMap[repoKey]}`;
+            }
+          }
+        });
       }
     }
   } catch (err) {
-    // Offline fallback
+    console.log('GitHub API offline / rate-limited, fallback values in use.');
   }
 }
