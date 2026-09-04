@@ -37,14 +37,12 @@ const translations = {
 
     projects_tag: "Çalışmalarım",
     projects_title: "Projeler",
-    filter_all: "Tümü",
 
     desc_agentmaxxing: "Ana context'i temiz tutan, açık LUNA worker packet'ları ve doğrulanabilir handoff'lar kullanan hafif Codex orkestrasyon skill'i.",
     desc_cutloc: "Hızlı masaüstü kurgu için geliştirilmiş React ve FFmpeg tabanlı yerel video düzenleyici.",
-    desc_geminimaxxing: "Google Antigravity ortamında mühendislik güvenilirliğini maksimize eden orkestrasyon becerisi.",
+    desc_visionoffload: "Görsel işleri izole worker'lara devrederek ana ajan context'ini temiz tutan küçük bir Agent Skill.",
     desc_badword: "PocketMine-MP sunucuları için yapılandırılabilir sohbet filtreleme ve küfür engelleme eklentisi.",
     desc_easyannouncement: "PocketMine-MP sunucuları için otomatik zamanlayıcılı ve komut tabanlı duyuru yönetim eklentisi.",
-    desc_farmguarder: "Tarım bloklarının toprağa dönüşmesini engelleyen sunucu koruma eklentisi.",
     desc_hologramapi: "PocketMine-MP sunucuları için hologram ve yüzen metin yönetim kütüphanesi.",
 
     stack_tag: "Yetenekler & Cephanelik",
@@ -97,14 +95,12 @@ const translations = {
 
     projects_tag: "Work",
     projects_title: "Projects",
-    filter_all: "All",
 
     desc_agentmaxxing: "Lightweight Codex orchestration skill that keeps the main context clean with explicit LUNA worker packets and verifiable handoffs.",
     desc_cutloc: "Experimental local-first video editor built with React, Fastify, and FFmpeg for desktop workflows.",
-    desc_geminimaxxing: "Engineering reliability skill for task decomposition and verification in Google Antigravity.",
+    desc_visionoffload: "A tiny Agent Skill that keeps raw visual context out of the main session by offloading image work to isolated visual workers.",
     desc_badword: "Configurable chat filter and profanity blocking security plugin for PocketMine-MP.",
     desc_easyannouncement: "Automated scheduler and command announcement plugin for PocketMine-MP API 4-5.",
-    desc_farmguarder: "PocketMine protection plugin preventing farmland blocks from turning into dirt.",
     desc_hologramapi: "Hologram and floating text virion library for PocketMine-MP servers.",
 
     stack_tag: "Skills & Arsenal",
@@ -138,7 +134,6 @@ let currentLang = getInitialLanguage();
 
 document.addEventListener('DOMContentLoaded', () => {
   initLanguageSwitcher();
-  initProjectFilters();
   initClipboardActions();
   initSpotlight();
   initCardTilt();
@@ -184,39 +179,7 @@ function initLanguageSwitcher() {
 }
 
 /* --------------------------------------------------------------------------
-   1. Project Category Filter
-   -------------------------------------------------------------------------- */
-function initProjectFilters() {
-  const filterBtns = document.querySelectorAll('.filter-pill');
-  const projectCards = document.querySelectorAll('.compact-card');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.getAttribute('data-filter');
-
-      projectCards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        if (filter === 'all' || cat === filter) {
-          card.style.display = 'flex';
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(6px)';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 15);
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   2. One-Click Copy Actions & Toast Notification
+   1. One-Click Copy Actions & Toast Notification
    -------------------------------------------------------------------------- */
 function initClipboardActions() {
   const copyButtons = document.querySelectorAll('.copy-mail-btn');
@@ -258,11 +221,15 @@ function showToast(message) {
 }
 
 /* --------------------------------------------------------------------------
-   3. Mouse Spotlight Follower
+   2. Mouse Spotlight Follower
    -------------------------------------------------------------------------- */
 function initSpotlight() {
   const spotlight = document.getElementById('cursor-spotlight');
   if (!spotlight) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    spotlight.remove();
+    return;
+  }
 
   let mouseX = 0, mouseY = 0;
   let currentX = 0, currentY = 0;
@@ -283,9 +250,10 @@ function initSpotlight() {
 }
 
 /* --------------------------------------------------------------------------
-   4. 3D Card Tilt Micro-Interactions
+   3. 3D Card Tilt Micro-Interactions
    -------------------------------------------------------------------------- */
 function initCardTilt() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const cards = document.querySelectorAll('.compact-card, .about-card, .channel-card');
 
   cards.forEach(card => {
@@ -310,7 +278,7 @@ function initCardTilt() {
 }
 
 /* --------------------------------------------------------------------------
-   5. Live GitHub Repos & Stars Fetcher
+   4. Live GitHub Repos & Stars Fetcher
    -------------------------------------------------------------------------- */
 async function fetchGitHubMetrics() {
   const repoStat = document.getElementById('stat-repos');
