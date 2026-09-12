@@ -142,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSpotlight();
   initCardTilt();
   initSectionNavigation();
-  initEntranceAnimations();
   fetchGitHubMetrics();
 });
 
@@ -285,7 +284,7 @@ function initCardTilt() {
 }
 
 /* --------------------------------------------------------------------------
-   4. Active navigation & quiet entrance motion
+   4. Active navigation
    -------------------------------------------------------------------------- */
 function initSectionNavigation() {
   const links = document.querySelectorAll('.nav-link[href^="#"]');
@@ -307,28 +306,6 @@ function initSectionNavigation() {
   }, { rootMargin: '-28% 0px -58% 0px', threshold: [0.1, 0.35, 0.6] });
 
   sections.forEach(section => observer.observe(section));
-}
-
-function initEntranceAnimations() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const targets = document.querySelectorAll('.hero-section, main > .section, .compact-card, .stack-group');
-  if (!('IntersectionObserver' in window)) return;
-
-  document.body.classList.add('motion-ready');
-  targets.forEach((target, index) => {
-    target.classList.add('reveal');
-    target.style.setProperty('--reveal-delay', `${Math.min(index % 6, 5) * 55}ms`);
-  });
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: 0.12 });
-
-  targets.forEach(target => observer.observe(target));
 }
 
 /* --------------------------------------------------------------------------
