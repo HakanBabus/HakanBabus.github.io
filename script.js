@@ -21,7 +21,7 @@ const translations = {
 
     about_tag: "Kısaca",
     about_title: "Neler geliştiriyorum?",
-    about_summary: "Yerel çalışan geliştirici araçları, yapay zekâ iş akışları ve oyun sunucusu eklentileri geliştiriyorum.",
+    about_summary: "Kullanıcıyı yormayan yerel geliştirici araçları, doğrulanabilir yapay zekâ iş akışları ve toplulukların işini kolaylaştıran oyun sunucusu eklentileri geliştiriyorum. Odağım; hızlı çalışan, anlaşılır ve gerçekten kullanılabilir yazılımlar üretmek.",
     repo_description_loading: "GitHub açıklaması yükleniyor…",
     about_story_badge: "Geliştirici & Sistem Tasarımcısı",
     about_story_heading: "Fikirleri kaba deneylerden alıp <span class=\"text-highlight\">kararlı ve akıcı araçlara</span> dönüştürüyorum.",
@@ -81,7 +81,7 @@ const translations = {
 
     about_tag: "In short",
     about_title: "What I build",
-    about_summary: "I build local developer tools, AI workflows, and game-server plugins.",
+    about_summary: "I build local developer tools that stay out of the way, verifiable AI workflows, and game-server plugins that make communities easier to run. My focus is software that is fast, clear, and genuinely useful.",
     repo_description_loading: "Loading GitHub description…",
     about_story_badge: "Developer & Systems Designer",
     about_story_heading: "Turning ideas from rough prototypes into <span class=\"text-highlight\">stable, fluid software</span>.",
