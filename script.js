@@ -141,6 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initClipboardActions();
   initSpotlight();
   initCardTilt();
+  initSectionNavigation();
+  initEntranceAnimations();
   fetchGitHubMetrics();
 });
 
@@ -283,7 +285,54 @@ function initCardTilt() {
 }
 
 /* --------------------------------------------------------------------------
-   4. Live GitHub Repos & Stars Fetcher
+   4. Active navigation & quiet entrance motion
+   -------------------------------------------------------------------------- */
+function initSectionNavigation() {
+  const links = document.querySelectorAll('.nav-link[href^="#"]');
+  const sections = [...links]
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  if (!('IntersectionObserver' in window) || !sections.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    const current = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    if (!current) return;
+    links.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${current.target.id}`);
+    });
+  }, { rootMargin: '-28% 0px -58% 0px', threshold: [0.1, 0.35, 0.6] });
+
+  sections.forEach(section => observer.observe(section));
+}
+
+function initEntranceAnimations() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const targets = document.querySelectorAll('.hero-section, main > .section, .compact-card, .stack-group');
+  if (!('IntersectionObserver' in window)) return;
+
+  document.body.classList.add('motion-ready');
+  targets.forEach((target, index) => {
+    target.classList.add('reveal');
+    target.style.setProperty('--reveal-delay', `${Math.min(index % 6, 5) * 55}ms`);
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12 });
+
+  targets.forEach(target => observer.observe(target));
+}
+
+/* --------------------------------------------------------------------------
+   5. Live GitHub Repos & Stars Fetcher
    -------------------------------------------------------------------------- */
 async function fetchGitHubMetrics() {
   const repoStat = document.getElementById('stat-repos');
