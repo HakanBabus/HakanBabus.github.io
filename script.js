@@ -14,13 +14,15 @@ const translations = {
     hero_title_3: "dönüştürüyorum.",
     hero_bio: "Merhaba, ben <strong>Hakan Cineviz</strong> (<code>@HakanBabus</code>). BEUN Bilgisayar Mühendisliği öğrencisiyim. Multi-agent yapay zekâ iş akışları, masaüstü kurgu araçları ve Minecraft sunucu yazılımları geliştiriyorum.",
     hero_btn_projects: "Projelerimi İncele",
-    hero_btn_contact: "İletişime Geç",
+    hero_btn_github: "GitHub'a Git",
     stat_repos: "GitHub Deposu",
     stat_stars: "Proje Yıldızı",
     stat_edu: "Bilgisayar Mühendisliği",
 
-    about_tag: "Hakkımda & Vizyon",
-    about_title: "Mühendislik Yaklaşımım",
+    about_tag: "Kısaca",
+    about_title: "Neler geliştiriyorum?",
+    about_summary: "Yerel çalışan geliştirici araçları, yapay zekâ iş akışları ve oyun sunucusu eklentileri geliştiriyorum.",
+    repo_description_loading: "GitHub açıklaması yükleniyor…",
     about_story_badge: "Geliştirici & Sistem Tasarımcısı",
     about_story_heading: "Fikirleri kaba deneylerden alıp <span class=\"text-highlight\">kararlı ve akıcı araçlara</span> dönüştürüyorum.",
     about_story_body: "Bülent Ecevit Üniversitesi Bilgisayar Mühendisliği öğrencisiyim. Yazılım geliştirirken odağım; kullanıcıyı yormayan yerel araçlar, otonom alt ajanlarla çalışan yapay zekâ iş akışları ve yüksek performanslı sunucu altyapıları inşa etmek.",
@@ -45,7 +47,7 @@ const translations = {
     desc_easyannouncement: "PocketMine-MP sunucuları için otomatik zamanlayıcılı ve komut tabanlı duyuru yönetim eklentisi.",
     desc_hologramapi: "PocketMine-MP sunucuları için hologram ve yüzen metin yönetim kütüphanesi.",
 
-    stack_tag: "Yetenekler & Cephanelik",
+    stack_tag: "Teknolojiler",
     stack_title: "Kullandığım Teknolojiler",
     stack_langs: "Diller",
     stack_frameworks: "Frameworkler & Kütüphaneler",
@@ -72,13 +74,15 @@ const translations = {
     hero_title_3: "and systems.",
     hero_bio: "Hi, I'm <strong>Hakan Cineviz</strong> (<code>@HakanBabus</code>). Computer Engineering student at BEUN. I build multi-agent AI workflows, local desktop editing tools, and Minecraft server software.",
     hero_btn_projects: "Explore Projects",
-    hero_btn_contact: "Get in Touch",
+    hero_btn_github: "Visit GitHub",
     stat_repos: "GitHub Repositories",
     stat_stars: "Project Stars",
     stat_edu: "Computer Engineering",
 
-    about_tag: "About & Vision",
-    about_title: "Engineering Approach",
+    about_tag: "In short",
+    about_title: "What I build",
+    about_summary: "I build local developer tools, AI workflows, and game-server plugins.",
+    repo_description_loading: "Loading GitHub description…",
     about_story_badge: "Developer & Systems Designer",
     about_story_heading: "Turning ideas from rough prototypes into <span class=\"text-highlight\">stable, fluid software</span>.",
     about_story_body: "Computer Engineering student at Bülent Ecevit University. My focus centers on zero-friction local-first tools, bounded autonomous AI workflows, and high-throughput server infrastructures.",
@@ -103,7 +107,7 @@ const translations = {
     desc_easyannouncement: "Automated scheduler and command announcement plugin for PocketMine-MP API 4-5.",
     desc_hologramapi: "Hologram and floating text virion library for PocketMine-MP servers.",
 
-    stack_tag: "Skills & Arsenal",
+    stack_tag: "Technologies",
     stack_title: "Technologies & Tooling",
     stack_langs: "Languages",
     stack_frameworks: "Frameworks & Libraries",
@@ -154,6 +158,7 @@ window.switchLanguage = function(lang) {
   });
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
+    if (el.dataset.liveDescription === 'true') return;
     const key = el.getAttribute('data-i18n');
     if (translations[lang] && translations[lang][key]) {
       el.innerHTML = translations[lang][key];
@@ -308,13 +313,20 @@ async function fetchGitHubMetrics() {
           starStat.innerText = `⭐ ${totalStars}+`;
         }
 
-        // 3. Her Proje Kartının Kendi Yıldızını Otomatik Güncelleme
+        // 3. Each card gets the live GitHub description and star count.
         document.querySelectorAll('.compact-card[data-repo]').forEach(card => {
           const repoKey = card.getAttribute('data-repo').toLowerCase();
-          if (Object.prototype.hasOwnProperty.call(starMap, repoKey)) {
+          const repo = repos.find(item => item.name.toLowerCase() === repoKey);
+          if (repo) {
             const starBadge = card.querySelector('.compact-star');
             if (starBadge) {
-              starBadge.innerText = `⭐ ${starMap[repoKey]}`;
+              starBadge.innerText = `⭐ ${repo.stargazers_count || 0}`;
+            }
+
+            const description = card.querySelector('[data-repo-description]');
+            if (description && typeof repo.description === 'string' && repo.description.trim()) {
+              description.textContent = repo.description.trim();
+              description.dataset.liveDescription = 'true';
             }
           }
         });
