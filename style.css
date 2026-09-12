@@ -54,6 +54,7 @@ html {
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
+  display: none;
   width: 0;
   height: 0;
 }
@@ -63,6 +64,8 @@ body {
   width: 100%;
   position: relative;
   overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   line-height: 1.6;
   background:
     radial-gradient(circle at 50% -12%, rgba(63, 90, 255, 0.18), transparent 34rem),
