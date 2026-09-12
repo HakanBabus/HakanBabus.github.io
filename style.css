@@ -1264,6 +1264,7 @@ body:hover #cursor-spotlight {
   }
 
   .nav-actions { gap: 7px; padding-left: 8px; }
+  .nav-actions { margin-left: auto; }
 
   .btn-pill-github {
     width: 31px;
