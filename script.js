@@ -42,6 +42,9 @@ const translations = {
 
     desc_agentmaxxing: "Ana context'i temiz tutan, açık LUNA worker packet'ları ve doğrulanabilir handoff'lar kullanan hafif Codex orkestrasyon skill'i.",
     desc_cutloc: "Hızlı masaüstü kurgu için geliştirilmiş React ve FFmpeg tabanlı yerel video düzenleyici.",
+    modelcheck_badge: "3B Görüntüleyici",
+    desc_modelcheck: "GLB modellerini tarayıcıda aç, kesit al ve sürümleri karşılaştır. Kodlama ajanları da komut satırından inceleme görselleri oluşturabilir ve etkileşimli bağlantılar paylaşabilir.",
+    modelcheck_demo: "Canlı demoyu aç",
     desc_visionoffload: "Görsel işleri izole worker'lara devrederek ana ajan context'ini temiz tutan küçük bir Agent Skill.",
     desc_badword: "PocketMine-MP sunucuları için yapılandırılabilir sohbet filtreleme ve küfür engelleme eklentisi.",
     desc_easyannouncement: "PocketMine-MP sunucuları için otomatik zamanlayıcılı ve komut tabanlı duyuru yönetim eklentisi.",
@@ -102,6 +105,9 @@ const translations = {
 
     desc_agentmaxxing: "Lightweight Codex orchestration skill that keeps the main context clean with explicit LUNA worker packets and verifiable handoffs.",
     desc_cutloc: "Experimental local-first video editor built with React, Fastify, and FFmpeg for desktop workflows.",
+    modelcheck_badge: "3D Viewer",
+    desc_modelcheck: "Open GLB files in the browser, explore cutaways, and compare revisions. Coding agents can render review images from the terminal and share interactive review links.",
+    modelcheck_demo: "Open live demo",
     desc_visionoffload: "A tiny Agent Skill that keeps raw visual context out of the main session by offloading image work to isolated visual workers.",
     desc_badword: "Configurable chat filter and profanity blocking security plugin for PocketMine-MP.",
     desc_easyannouncement: "Automated scheduler and command announcement plugin for PocketMine-MP API 4-5.",

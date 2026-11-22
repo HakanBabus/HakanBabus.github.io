@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=4.0">
+  <link rel="stylesheet" href="style.css?v=4.1">
 </head>
 <body>
   <!-- Ambient Backdrops -->
@@ -151,6 +151,32 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
           </a>
         </div>
+
+        <article class="compact-card modelcheck-card" id="modelcheck" data-repo="ModelCheck">
+          <div>
+            <div class="compact-top">
+              <span class="compact-badge modelcheck-badge" data-i18n="modelcheck_badge">3B Görüntüleyici</span>
+              <span class="compact-star">⭐ 0</span>
+            </div>
+            <h3 class="compact-title">ModelCheck</h3>
+            <p class="compact-desc" data-i18n="desc_modelcheck">GLB modellerini tarayıcıda aç, kesit al ve sürümleri karşılaştır. Kodlama ajanları da komut satırından inceleme görselleri oluşturabilir ve etkileşimli bağlantılar paylaşabilir.</p>
+            <div class="compact-tags">
+              <span>Three.js</span>
+              <span>GLB</span>
+              <span>CLI</span>
+            </div>
+          </div>
+          <div class="modelcheck-actions">
+            <a class="modelcheck-demo" href="/ModelCheck/">
+              <span data-i18n="modelcheck_demo">Canlı demoyu aç</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </a>
+            <a class="compact-link" href="https://github.com/HakanBabus/ModelCheck" target="_blank" rel="noopener noreferrer">
+              <span>GitHub</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+          </div>
+        </article>
 
         <!-- Card 3: VisionOffload -->
         <div class="compact-card" data-category="ai" data-repo="VisionOffload">
@@ -339,6 +365,6 @@
   <!-- Fluid Toast Notification -->
   <div id="toast" class="toast-notification" aria-live="polite"></div>
 
-  <script src="script.js?v=3.0"></script>
+  <script src="script.js?v=3.1"></script>
 </body>
 </html>

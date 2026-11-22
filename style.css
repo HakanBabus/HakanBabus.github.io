@@ -843,6 +843,54 @@ body:hover #cursor-spotlight {
   transform: translateX(2px);
 }
 
+.modelcheck-card {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px 36px;
+  scroll-margin-top: 92px;
+  --card-accent: rgba(185, 239, 143, 0.6);
+  background: linear-gradient(110deg, #17221d 0%, var(--bg-card) 75%);
+}
+
+.modelcheck-card .compact-desc { max-width: 68ch; }
+.modelcheck-card .compact-tags { margin-bottom: 0; }
+.modelcheck-card .compact-tags span,
+.modelcheck-card .compact-star { color: var(--text-secondary); }
+
+.modelcheck-badge {
+  background: rgba(185, 239, 143, 0.1);
+  color: #cfedac;
+  border: 1px solid rgba(185, 239, 143, 0.24);
+}
+
+.modelcheck-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.modelcheck-actions .compact-link { border: 0; padding-top: 0; }
+
+.modelcheck-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 13px;
+  border-radius: 8px;
+  background: #d9ee9d;
+  color: #172015;
+  font-size: 0.82rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.modelcheck-demo:hover { background: #e8f8bc; color: #172015; }
+.modelcheck-actions a:focus-visible { outline: 2px solid #d9ee9d; outline-offset: 3px; }
+
 /* ==========================================================================
    Tech Stack
    ========================================================================== */
@@ -1173,6 +1221,10 @@ body:hover #cursor-spotlight {
   .compact-card:nth-child(1),
   .compact-card:nth-child(2) {
     grid-column: 1;
+  }
+
+  .modelcheck-card {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .stack-grid {
